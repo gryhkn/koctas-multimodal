@@ -2,3 +2,4 @@ instructor
 openai
 streamlit
 requests
+python-dotenv
