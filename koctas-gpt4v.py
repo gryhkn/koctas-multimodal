@@ -1,12 +1,18 @@
 import streamlit as st
 import base64
 import os
-from openai import OpenAI # openai version 1.1.1
+from openai import OpenAI 
 import instructor
 import requests
 from pydantic.main import BaseModel
 st.title("Koçtaş Ürün Bilgi Çıkarma")
 st.image("koctas-324.jpg")
+
+from dotenv import load_dotenv
+load_dotenv() 
+
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 class Product(BaseModel):
   UrunSınıfı: str
@@ -25,7 +31,7 @@ if koctas_image is not None and st.button('Özellikleri Çıkar'):
 
     headers = {
       "Content-Type": "application/json",
-      "Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}"
+      "Authorization": f"Bearer {OPENAI_API_KEY}"
     }
 
     payload = {
@@ -36,8 +42,7 @@ if koctas_image is not None and st.button('Özellikleri Çıkar'):
           "content": [
             {
               "type": "text",
-              "text": """Görseldeki ev aletleri ürünü hakkında detaylı billgi ver. Ürün sınıfı, ürün adı, fiyatı, ve aldığı puanı yaz. Cevabı bir json formatı olarak döndür.
-              Eğer ev aletleri dışında bir şey yüklenirse buna cevap verme. 
+              "text": """Görseldeki ürün hakkında detaylı billgi ver. Ürün sınıfı, ürün adı, fiyatı, ve aldığı puanı yaz. Cevabı bir json formatı olarak döndür.
               """
             },
             {
@@ -64,8 +69,7 @@ if koctas_image is not None and st.button('Özellikleri Çıkar'):
       response_model=Product,
       messages=[
         {"role": "system", "content": "Sen ev aletleri sınıflandırıcısısın"},
-        {"role": "user", "content": "Ürün sınıfı, ürün adı, fiyatı, ve aldığı puanı yaz. Cevabı bir json formatı olarak döndür. \n"
-              "Eğer ev aletleri dışında bir şey yüklenirse buna cevap verme.  :" + content}
+        {"role": "user", "content": "Ürün sınıfı, ürün adı, fiyatı, ve aldığı puanı yaz. Cevabı bir json formatı olarak döndür. " + content}
       ]
     )
     resp_model = ''
