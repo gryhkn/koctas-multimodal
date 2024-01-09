@@ -6,7 +6,7 @@ import instructor
 import requests
 from pydantic.main import BaseModel
 st.title("Koçtaş Ürün Bilgi Çıkarma")
-st.image("koctas-324.jpg")
+st.image("koctas-output.png")
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
