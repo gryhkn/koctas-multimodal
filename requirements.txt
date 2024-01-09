@@ -1,0 +1,4 @@
+instructor
+openai
+streamlit
+requests
