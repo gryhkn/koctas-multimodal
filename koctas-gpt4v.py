@@ -8,10 +8,6 @@ from pydantic.main import BaseModel
 st.title("Koçtaş Ürün Bilgi Çıkarma")
 st.image("koctas-324.jpg")
 
-from dotenv import load_dotenv
-load_dotenv() 
-
-
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 class Product(BaseModel):
