@@ -14,6 +14,7 @@ class Product(BaseModel):
   UrunSınıfı: str
   UrunAdı: str
   UrunFiyatı: str
+  UrunOzellikleri: str
   UrunDegerlendirme: str
 
 def encode_image(image_file):
@@ -38,7 +39,7 @@ if koctas_image is not None and st.button('Özellikleri Çıkar'):
           "content": [
             {
               "type": "text",
-              "text": """Görseldeki ürün hakkında detaylı billgi ver. Ürün sınıfı, ürün adı, fiyatı, ve aldığı puanı yaz. Cevabı bir json formatı olarak döndür.
+              "text": """Görseldeki ürün hakkında detaylı billgi ver. Ürün sınıfı, ürün adı, ürün özellikleri, fiyatı, ve aldığı puanı yaz. Cevabı bir json formatı olarak döndür.
               """
             },
             {
